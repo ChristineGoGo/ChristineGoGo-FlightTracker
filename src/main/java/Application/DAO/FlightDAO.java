@@ -105,7 +105,7 @@ public class FlightDAO {
      * The question marks will be filled in by the preparedStatement setString, setInt, etc methods. they follow
      * this format, where the first argument identifies the question mark to be filled (left to right, starting
      * from one) and the second argument identifies the value to be used:
-     * preparedStatement.setString(1,string1);
+     * preparedStatement.setString(1,string1); 
      * preparedStatement.setString(2,string2);
      *
      * @param flight an object modelling a Flight. the flight object does not contain a flight ID.
@@ -158,12 +158,13 @@ public class FlightDAO {
         try {
             //Write SQL logic here
             // String sql = "change me";
-            String sql = "UPDATE flight SET departure_city = ?, arrival_city = ? WHERE flight_id = id";
+            String sql = "UPDATE flight SET departure_city = ?, arrival_city = ? WHERE flight_id = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
             //write PreparedStatement setString and setInt methods here.
             preparedStatement.setString(1, flight.getDeparture_city());
             preparedStatement.setString(2, flight.getArrival_city());
+            preparedStatement.setInt(3, id);
             
 
             preparedStatement.executeUpdate();
@@ -200,7 +201,7 @@ public class FlightDAO {
 
             //write PreparedStatement setString and setInt methods here.
             preparedStatement.setString(1, departure_city);
-            preparedStatement
+            preparedStatement.setString(2,arrival_city);
 
 
             ResultSet rs = preparedStatement.executeQuery();
